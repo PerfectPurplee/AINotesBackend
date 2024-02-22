@@ -6,12 +6,15 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Catalog")
 public class Catalog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String catalogName;
+
+    @ManyToOne
+    private User user;
 
 
 }
