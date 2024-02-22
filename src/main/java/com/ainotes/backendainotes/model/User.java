@@ -18,7 +18,7 @@ public class User implements UserDetails {
     private String username;
     private String login;
     private String password;
-    private String mail;
+
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -32,12 +32,11 @@ public class User implements UserDetails {
         this.authorities = new HashSet<>();
     }
 
-    public User(String username, String login, String password, String mail,
+    public User(String username, String login, String password,
                 Set<Role> authorities) {
         this.username = username;
         this.login = login;
         this.password = password;
-        this.mail = mail;
         this.authorities = authorities;
     }
 
