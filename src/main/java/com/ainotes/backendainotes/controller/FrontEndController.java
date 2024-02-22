@@ -1,9 +1,6 @@
 package com.ainotes.backendainotes.controller;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/backend")
@@ -14,6 +11,11 @@ public class FrontEndController {
     public String postTest(@RequestBody String string) {
 
         return string;
+    }
+
+    @GetMapping("/test/get")
+    public String getTest() {
+        return "Access granted";
     }
 
 
