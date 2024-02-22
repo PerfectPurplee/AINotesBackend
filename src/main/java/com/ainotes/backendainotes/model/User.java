@@ -3,7 +3,10 @@ package com.ainotes.backendainotes.model;
 
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,14 +18,21 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+
     private String username;
     private String login;
     private String password;
-    @Nullable
     private String mail;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Catalog> userNotesCatalogs = new ArrayList<>();
+    public User(String username, String login, String password, String mail) {
+        this.username = username;
+        this.login = login;
+        this.password = password;
+        this.mail = mail;
+    }
 
 
+    public User() {
+
+    }
 }

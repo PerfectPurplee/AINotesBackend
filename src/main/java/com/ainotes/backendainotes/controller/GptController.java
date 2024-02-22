@@ -2,6 +2,7 @@ package com.ainotes.backendainotes.controller;
 
 import com.ainotes.backendainotes.dto.gptCommunication.CompletionGptRequest;
 import com.ainotes.backendainotes.dto.gptCommunication.CompletionGptResponse;
+import jakarta.annotation.Nonnull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
