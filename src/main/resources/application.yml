@@ -1,0 +1,35 @@
+server:
+  port: 1337
+
+openai:
+  key: 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
+  #  api:
+  #    url: https://api.openai.com/v1/chat/completions
+
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: accounts.google.com
+          jwk-set-uri: https://www.googleapis.com/oauth2/v3/certs
+
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:mysql://localhost:3306/ainotes
+    username: root
+    password: BSSB6240
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+
+
+
+
+
+
