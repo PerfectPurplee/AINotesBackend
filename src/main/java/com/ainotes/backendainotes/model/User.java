@@ -20,7 +20,6 @@ public class User implements UserDetails {
     @NotNull
     @Column(unique = true)
     private String username;
-    private String login;
     private String password;
 
 
@@ -36,10 +35,9 @@ public class User implements UserDetails {
         this.authorities = new HashSet<>();
     }
 
-    public User(String username, String login, String password,
+    public User(String username, String password,
                 Set<Role> authorities) {
         this.username = username;
-        this.login = login;
         this.password = password;
         this.authorities = authorities;
     }

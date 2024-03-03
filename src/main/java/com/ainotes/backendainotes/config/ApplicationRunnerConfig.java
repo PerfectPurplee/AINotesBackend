@@ -26,7 +26,7 @@ public class ApplicationRunnerConfig {
             Set<Role> roles = new HashSet<>();
             roles.add(adminRole);
 
-            User admin = new User("admin", "login",
+            User admin = new User("admin",
                     encoder.encode("password"), roles);
 
             userRepo.save(admin);
