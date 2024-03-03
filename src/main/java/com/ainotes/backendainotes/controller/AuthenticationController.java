@@ -1,34 +1,41 @@
 package com.ainotes.backendainotes.controller;
 
+import com.ainotes.backendainotes.dto.AuthenticationResponse;
+import com.ainotes.backendainotes.dto.LoginRequest;
 import com.ainotes.backendainotes.dto.RegisterRequest;
-import com.ainotes.backendainotes.service.UserReqistratiotionAuthService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.ainotes.backendainotes.service.AuthenticationService;
+import com.ainotes.backendainotes.service.JwtService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/authenticate")
 public class AuthenticationController {
 
-    UserReqistratiotionAuthService authService;
+    private final AuthenticationService authService;
+    private final JwtService jwtService;
 
-    @Autowired
-    public AuthenticationController(UserReqistratiotionAuthService authService) {
-        this.authService = authService;
-    }
 
     @PostMapping("/register")
-    public String registerUser(@RequestBody RegisterRequest registerRequest) {
+    public ResponseEntity<AuthenticationResponse> registerUser(@RequestBody RegisterRequest registerRequest) {
 
         authService.registerUser(registerRequest);
 
-        return "user registered";
+        return null;
 
     }
 
-    @GetMapping("/o")
-    public ResponseEntity<String> oAuth2(@RequestParam String code) {
-        return ResponseEntity.ok(code + " no way");
+    @PostMapping()
+    public ResponseEntity<String> loginUser(@RequestBody LoginRequest loginRequest) {
+        UserDetails userDetails = authService.authenticate(loginRequest);
+        return ResponseEntity.ok(jwtService.generateToken(userDetails));
+
 
     }
 }

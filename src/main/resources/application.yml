@@ -3,13 +3,26 @@ server:
 
 openai:
   key: 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
+
+application:
+  security:
+    jwt:
+      secret-key: d5cb917e353690de9285a8796619b4549b110dcc0c04e6c116d449cc4921eede
+      expiration: 86400000 # a day
+
+
   #  api:
   #    url: https://api.openai.com/v1/chat/completions
 
-
 spring:
+
   security:
     oauth2:
+      client:
+        registration:
+          google:
+            client-id: 211718583386-9p9ps5e13mgofvqflcbkcaa7ui0jda6l.apps.googleusercontent.com
+            client-secret: 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
       resourceserver:
         jwt:
           issuer-uri: accounts.google.com
@@ -19,7 +32,7 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
   datasource:
     url: jdbc:mysql://localhost:3306/ainotes
     username: root
