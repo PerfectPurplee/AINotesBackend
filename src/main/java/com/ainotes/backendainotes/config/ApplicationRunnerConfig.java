@@ -1,24 +1,36 @@
 package com.ainotes.backendainotes.config;
 
+import com.ainotes.backendainotes.model.Role;
 import com.ainotes.backendainotes.model.User;
+import com.ainotes.backendainotes.repository.RoleRepository;
 import com.ainotes.backendainotes.repository.UserRepository;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Configuration
 public class ApplicationRunnerConfig {
 
     @Bean
-    public ApplicationRunner dataLoader(UserRepository userRepo) {
-        String username = "Bartek";
-        String login = "123";
-
+    public ApplicationRunner dataLoader(UserRepository userRepo, RoleRepository roleRepo, PasswordEncoder encoder) {
         return args -> {
-            if (userRepo.findUserByUsernameAndLogin(username, login) == null) {
-                userRepo.save(new User("Bartek", "123", "123", "mail"));
-            } else
-                System.out.println("User already exists");
+            if (roleRepo.findByAuthority("ADMIN").isPresent()) return;
+
+            Role adminRole = roleRepo.save(new Role("ADMIN"));
+            roleRepo.save(new Role("USER"));
+
+            Set<Role> roles = new HashSet<>();
+            roles.add(adminRole);
+
+            User admin = new User("admin",
+                    encoder.encode("password"), roles);
+
+            userRepo.save(admin);
+
         };
     }
 }

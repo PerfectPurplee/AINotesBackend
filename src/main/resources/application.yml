@@ -1,0 +1,48 @@
+server:
+  port: 1337
+
+openai:
+  key: ***REMOVED***
+
+application:
+  security:
+    jwt:
+      secret-key: ***REMOVED***
+      expiration: 86400000 # a day
+
+
+  #  api:
+  #    url: https://api.openai.com/v1/chat/completions
+
+spring:
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ***REMOVED***
+            client-secret: ***REMOVED***
+      resourceserver:
+        jwt:
+          issuer-uri: accounts.google.com
+          jwk-set-uri: https://www.googleapis.com/oauth2/v3/certs
+
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+    url: ***REMOVED***
+    username: ***REMOVED***
+    password: ***REMOVED***
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+
+
+
+
+
+
