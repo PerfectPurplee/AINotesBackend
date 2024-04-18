@@ -39,15 +39,4 @@ response:
 
 ```
 
-```
-POST http://ec2-3-71-35-162.eu-central-1.compute.amazonaws.com:8080/gpt/completionOnlyResponse
-authorization:
-    Bearer Token: Jwt Token you received in login response.
-
-request body:
-   your prompt for gpt. example: write me a note about city of Warsaw.
-response:
-   text response from OpenAI Gpt api.
-
-```
 
