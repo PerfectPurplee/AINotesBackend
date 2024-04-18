@@ -1,17 +1,14 @@
 package com.ainotes.backendainotes.controller;
 
-import com.ainotes.backendainotes.dto.AuthenticationResponse;
-import com.ainotes.backendainotes.dto.LoginRequest;
-import com.ainotes.backendainotes.dto.RegisterRequest;
+import com.ainotes.backendainotes.dto.authentication.AuthenticationResponse;
+import com.ainotes.backendainotes.dto.authentication.LoginRequest;
+import com.ainotes.backendainotes.dto.authentication.RegisterRequest;
 import com.ainotes.backendainotes.service.AuthenticationService;
 import com.ainotes.backendainotes.service.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -27,15 +24,20 @@ public class AuthenticationController {
 
         authService.registerUser(registerRequest);
 
-        return null;
 
+        return null;
     }
 
-    @PostMapping()
+    @PostMapping("/login")
     public ResponseEntity<String> loginUser(@RequestBody LoginRequest loginRequest) {
         UserDetails userDetails = authService.authenticate(loginRequest);
         return ResponseEntity.ok(jwtService.generateToken(userDetails));
 
 
+    }
+
+    @GetMapping
+    public String test() {
+        return "You are connected";
     }
 }

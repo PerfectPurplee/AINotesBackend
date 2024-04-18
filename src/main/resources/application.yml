@@ -1,5 +1,5 @@
 server:
-  port: 1337
+  port: 8080
 
 openai:
   key: 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
@@ -30,11 +30,11 @@ spring:
 
 
   jpa:
-    show-sql: true
+    show-sql: false
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
   datasource:
-    url: jdbc:mysql://localhost:3306/ainotes
+    url: jdbc:mysql://dbforspringrestapi.cvu22cakg6nf.eu-central-1.rds.amazonaws.com/ainotes
     username: root
     password: BSSB6240
     driver-class-name: com.mysql.cj.jdbc.Driver

@@ -1,4 +1,4 @@
-package com.ainotes.backendainotes.dto;
+package com.ainotes.backendainotes.dto.authentication;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
