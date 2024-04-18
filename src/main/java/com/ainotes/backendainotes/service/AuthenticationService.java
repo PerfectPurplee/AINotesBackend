@@ -1,7 +1,7 @@
 package com.ainotes.backendainotes.service;
 
-import com.ainotes.backendainotes.dto.LoginRequest;
-import com.ainotes.backendainotes.dto.RegisterRequest;
+import com.ainotes.backendainotes.dto.authentication.LoginRequest;
+import com.ainotes.backendainotes.dto.authentication.RegisterRequest;
 import com.ainotes.backendainotes.model.Role;
 import com.ainotes.backendainotes.model.User;
 import com.ainotes.backendainotes.repository.RoleRepository;

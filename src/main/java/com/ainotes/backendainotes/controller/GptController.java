@@ -5,14 +5,12 @@ import com.ainotes.backendainotes.dto.gptCommunication.CompletionGptResponse;
 import jakarta.annotation.Nonnull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 
 @RestController
+@RequestMapping("/gpt")
 public class GptController {
 
 
@@ -32,11 +30,11 @@ public class GptController {
         return "PROMPT";
     }
 
-    @PostMapping("/api/hitGpt")
+    @PostMapping("/completion")
     public ResponseEntity<?> getResponseFromGPT(@RequestBody String prompt) {
 
         CompletionGptRequest completionGptRequest =
-                new CompletionGptRequest("gpt-3.5-turbo", prompt, 30);
+                new CompletionGptRequest("gpt-3.5-turbo", prompt, 150);
         CompletionGptResponse completionGptResponse = restTemplate
                 .postForObject("https://api.openai.com/v1/chat/completions", completionGptRequest, CompletionGptResponse.class);
         if (completionGptResponse == null) {
@@ -45,19 +43,20 @@ public class GptController {
             return ResponseEntity.status(200).body(completionGptResponse);
     }
 
-    @PostMapping("/api/hitGptString")
-    public String getResponseFromGPTString(@RequestBody String prompt) {
 
-        CompletionGptRequest completionGptRequest =
-                new CompletionGptRequest("gpt-3.5-turbo", prompt, 30);
-        CompletionGptResponse completionGptResponse = restTemplate
-                .postForObject("https://api.openai.com/v1/chat/completions", completionGptRequest, CompletionGptResponse.class);
-
-        if (completionGptResponse == null) {
-            return "something went wrong";
-        } else
-            return completionGptResponse.getChoices().get(0).getMessage().getContent();
-    }
+//    @PostMapping("/completionOnlyResponse")
+//    public String getResponseFromGPTString(@RequestBody String prompt) {
+//
+//        CompletionGptRequest completionGptRequest =
+//                new CompletionGptRequest("gpt-3.5-turbo", prompt, 150);
+//        CompletionGptResponse completionGptResponse = restTemplate
+//                .postForObject("https://api.openai.com/v1/chat/completions", completionGptRequest, CompletionGptResponse.class);
+//
+//        if (completionGptResponse == null) {
+//            return "something went wrong";
+//        } else
+//            return completionGptResponse.getChoices().get(0).getMessage().getContent();
+//    }
 
 
 }
