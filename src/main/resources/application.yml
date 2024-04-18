@@ -2,17 +2,14 @@ server:
   port: 8080
 
 openai:
-  key: ***REMOVED***
+  key: yourOpenAIKey
 
 application:
   security:
     jwt:
-      secret-key: ***REMOVED***
+      secret-key: secretKey
       expiration: 86400000 # a day
 
-
-  #  api:
-  #    url: https://api.openai.com/v1/chat/completions
 
 spring:
 
@@ -21,8 +18,8 @@ spring:
       client:
         registration:
           google:
-            client-id: ***REMOVED***
-            client-secret: ***REMOVED***
+            client-id: clientID
+            client-secret: clientSecret
       resourceserver:
         jwt:
           issuer-uri: accounts.google.com
@@ -34,9 +31,9 @@ spring:
     hibernate:
       ddl-auto: update
   datasource:
-    url: ***REMOVED***
-    username: ***REMOVED***
-    password: ***REMOVED***
+    url: jdbc:mysql://localhost:3306/yourDatabaseName
+    username: admin
+    password: password
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 
