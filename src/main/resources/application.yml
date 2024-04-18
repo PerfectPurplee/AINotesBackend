@@ -1,5 +1,5 @@
 server:
-  port: 1337
+  port: 8080
 
 openai:
   key: ***REMOVED***
@@ -30,9 +30,9 @@ spring:
 
 
   jpa:
-    show-sql: true
+    show-sql: false
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
   datasource:
     url: ***REMOVED***
     username: ***REMOVED***
